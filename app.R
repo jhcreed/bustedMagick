@@ -27,13 +27,13 @@ ui <- fluidPage(
 server <- function(input, output) {
    
    output$ximage <- renderImage({
-     filename <- normalizePath(file.path(paste0("/Volumes/Lab_Gerke/ShinyApps/dagger/",
-                                                 "/DAGimageDoc.pdf")))
+     filename <- normalizePath(file.path(paste0(getwd(),
+                                                 "/pdf/DAGimageDoc.pdf")))
      image <-  image_convert(image_read(path=filename, 
                                         density = paste0(input$density,"x",input$density)),
                              "png")
      tmpfile <- image %>%
-                 image_write(path=paste0(getwd(),"/DAGimage.png"),
+                 image_write(path=paste0(getwd(),"/image.png"),
                              format = 'png')
      
      list(src = tmpfile)
